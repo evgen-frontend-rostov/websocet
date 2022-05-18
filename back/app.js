@@ -2,7 +2,6 @@ const ws = require('ws');
 
 const wss = new ws.Server({
   port: 8000,
-  
 }, () => console.log('Server started on 8000'));
 
 wss.on('connection', function connection(ws) {
@@ -21,6 +20,6 @@ wss.on('connection', function connection(ws) {
 
 function broadcastMessage(message) {
   wss.clients.forEach(client => {
-    client.send(message);
+    client.send(JSON.stringify(message));
   })
 }
